@@ -3,7 +3,7 @@
     <h1>{{ note.title }}</h1>
     <div>{{ note.body }}</div>
     <ul>
-      <li>{{ note.dateTime }}</li>
+      <li>{{ note.dateTime | date: "dd.MM.y"}}</li>
     </ul>
   
   </ng-container>
