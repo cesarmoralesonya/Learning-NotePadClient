@@ -1,1 +1,27 @@
-<p>notes works!</p>
+<h1>Notas</h1>
+
+<p *ngIf="!(notes$ | async)"><em>Cargando...</em></p>
+<p>
+  <a [routerLink]="['/add']" class="btn btn-primary float-right mb-3">Nueva nota</a>
+</p>
+
+<table class="table table-sm table-hover" *ngIf="(notes$ | async)?.length>0">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Titulo</th>
+      <th>Fecha</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let note of (notes$ | async)">
+      <td>{{ note.id }}</td>
+      <td><a [routerLink]="['/note/', note.id]">{{ note.title }}</a></td>
+      <td>{{ note.dateTime | date: "dd.MM.y" }}</td>
+      <td><a [routerLink]="['/note/edit/', note.id]" class="btn btn-primary btn-sm float-right">Editar</a></td>
+      <td><a [routerLink]="" (click)="delete(note.id)" class="btn btn-danger btn-sm float-right">Borrar</a></td>
+    </tr>
+  </tbody>
+</table>
