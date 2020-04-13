@@ -1,1 +1,25 @@
-<p>note-add-edit works!</p>
+<h1>{{actionType}} note</h1>
+<form [formGroup]="form" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-group row">
+    <label class=" control-label col-md-12">titulo</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="title">
+    </div>
+    <span class="text-danger ml-3" *ngIf="title.invalid && formDir.submitted">
+      El titulo es requerido.
+    </span>
+  </div>
+  <div class="form-group row">
+    <label class="control-label col-md-12" for="Body">Cuerpo</label>
+    <div class="col-md-12">
+      <textarea class="form-control" rows="15" formControlName="body"></textarea>
+    </div>
+    <span class="text-danger ml-3" *ngIf="body.invalid && formDir.submitted">
+      El cuerpo es requerido.
+    </span>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success float-right">Guardar</button>
+    <button class="btn btn-secondary float-left" (click)="cancel()">Cancelar</button>
+  </div>
+</form>

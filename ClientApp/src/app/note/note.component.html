@@ -1,1 +1,10 @@
-<p>note works!</p>
+<ng-container *ngIf="(note$ | async) as note; else loading">
+
+    <h1>{{ note.title }}</h1>
+    <div>{{ note.body }}</div>
+    <ul>
+      <li>{{ note.dateTime }}</li>
+    </ul>
+  
+  </ng-container>
+  <ng-template #loading>cargando…</ng-template>
